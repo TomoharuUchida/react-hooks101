@@ -1,23 +1,40 @@
-import React, { useState } from 'react';
+import React, { useReducer,useState } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const App = props => {
+import reducer from '../reducers';
+
+const App = () => {
+  const [state, dispatch] = useReducer(reducer, [])
+  const [title, setTitle] = useState('')
+  const [body,setBody] = useState('')
+
+  const addEvent = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: 'CREATE_EVENT',
+      title,
+      body
+    })
+    setTitle('')
+    setBody('')
+  }
+
   return (
     <div className="container-fluid">
       <h4>Create Event Form</h4>
       <form>
         <div className="form-group">
           <label htmlFor="formEventTitle">Title</label>
-          <input className="form-control" id="formEventTitle"/>
+          <input className="form-control" id="formEventTitle" value={title} onChange={e => setTitle(e.target.value)}/>
         </div>
 
         <div className="form-group">
           <label htmlFor="formEventBody">Body</label>
-          <textarea className="form-control" id="formEventBody"/>
+          <textarea className="form-control" id="formEventBody" value={ body} onChange={e =>setBody(e.target.value)}/>
         </div>
 
-        <button className="btn btn-primary">Add</button>
+        <button className="btn btn-primary" onClick={addEvent}>Add</button>
         <button className="btn btn-danger">Delete All Events</button>
 
         <h4>Events List</h4>
