@@ -46,6 +46,16 @@ const EventForm = () => {
 
     const unCreatable = title === '' || body === ''
 
+    const deleteAllOperationLogs = (e) => {
+        e.preventDefault()
+        const result = window.confirm('Are you sure you want to delete all operationLogs?')
+        if (result) {
+            dispatch({
+                type:DELETE_ALL_OPERATION_LOGS
+            })
+        }
+    }
+
     return (
         <React.Fragment>
             <h4>Create Event Form</h4>
@@ -61,7 +71,8 @@ const EventForm = () => {
                 </div>
 
                 <button className="btn btn-primary" onClick={addEvent} disabled={unCreatable}>Add</button>
-                <button className="btn btn-danger" onClick={deleteAllEvents} disabled={state.events.length ===0}>Delete All Events</button>
+                <button className="btn btn-danger" onClick={deleteAllEvents} disabled={state.events.length === 0}>Delete All Events</button>
+                <button className="btn btn-danger" onClick={deleteAllOperationLogs} disabled={state.operationLogs.length ===0}>Delete All OperationLogs</button>                
             </form>
         </React.Fragment>
     )
