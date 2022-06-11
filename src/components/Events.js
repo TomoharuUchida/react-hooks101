@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import Event from './Event'
+import AppContext from '../contexts/AppContext';
 
-const Events = ({state,dispatch}) => {
+const Events = ({ state, dispatch }) => {
+    const value = useContext(AppContext)
     return (
         <React.Fragment>
+            <div>{value }</div>
             <h4>Events List</h4>
             <table className="table table-hover">
             <thead>
