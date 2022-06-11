@@ -1,13 +1,19 @@
-const events = (state = [],action) => {
+import {
+    CREATE_EVENT,
+    DELETE_EVENT,
+    EDELETE_ALL_EVENTS
+} from '../actions'
+
+const events = (state = [], action) => {
     switch (action.type) {
-        case 'CREATE_EVENT':
+        case CREATE_EVENT:
             const event = { title: action.title, body: action.body }
             const length = state.length
             const id = length === 0 ? 1 : state[length-1].id + 1
             return [...state,{id,...event}]
-        case 'DELETE_EVENT':
+        case DELETE_EVEN:
             return state.filter(event => event.id !== action.id)
-        case 'EDELETE_ALL_EVENTS':
+        case EDELETE_ALL_EVENTS:
             return []
         default:
             return state
