@@ -7,7 +7,7 @@ const Events = () => {
     const {state} = useContext(AppContext)
     return (
         <React.Fragment>
-            <h4>Events List</h4>
+            <h4>Event List</h4>
             <table className="table table-hover">
             <thead>
                 <tr>
@@ -15,7 +15,7 @@ const Events = () => {
                 <th>Title</th>
                 <th>Body</th>
                 <th></th>
-            </tr>
+                </tr>
             </thead>
             <tbody>
                 {state.events.map((event, index) =>  (<Event key={index} event={event}/>))}
